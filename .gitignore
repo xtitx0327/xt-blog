@@ -33,3 +33,12 @@ coverage
 public/*
 /server/data/auth
 /server/data/config.json
+/server/data/articles.json
+/server/data/articles/*
+server/__pycache__/app.cpython-310.pyc
+server/__pycache__/utils.cpython-310.pyc
+server/routes/apis/__pycache__/article.cpython-310.pyc
+server/routes/apis/__pycache__/auth.cpython-310.pyc
+server/routes/__pycache__/api.cpython-310.pyc
+server/routes/__pycache__/__init__.cpython-310.pyc
+server/routes/apis/__pycache__/__init__.cpython-310.pyc

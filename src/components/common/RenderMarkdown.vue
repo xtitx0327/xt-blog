@@ -1,7 +1,9 @@
 <template>
 	<div class="md-container">
-		<ElRow>
+		<ElRow v-if="props.showOptions">
 			<ElSpace size="large" alignment="center" style="margin-bottom: 1rem;">
+				<ElButton @click="updateArticle">保存更改</ElButton>
+				<ElDivider direction="vertical"></ElDivider>
 				<ElText tag="b">渲染选项：</ElText>
 				<ElCheckbox v-model="autoRender">自动渲染</ElCheckbox>
 				<ElButton @click="MathJax.doRender">重新渲染</ElButton>
@@ -11,18 +13,15 @@
 	</div>
 </template>
 
-<script>
-
-</script>
-
 <script setup>
-import { ElButton, ElCheckbox, ElRow, ElSpace, ElText } from 'element-plus';
+import { apiBase } from '../../config.js';
+import { ElButton, ElCheckbox, ElDivider, ElRow, ElSpace, ElText, ElMessage } from 'element-plus';
 import { computed, watch, ref } from 'vue';
 import { marked } from 'marked';
 import MathJax from './MathJax.js'
 import hljs from 'highlight.js';
 
-const props = defineProps(['content']);
+const props = defineProps(['content', 'showOptions', 'id']);
 
 MathJax.initMathjaxConfig();
 
@@ -46,13 +45,45 @@ watch(renderedContent, () => {
 		MathJax.doRender();
 	return;
 });
+
+function updateArticle() {
+	console.log(props.id, props.content)
+	fetch(apiBase + '/api/article/update', {
+		method: 'POST',
+		body: JSON.stringify({
+			id: props.id,
+			content: props.content
+		}),
+		headers: {
+			'Authorization': 'Bearer ' + window.localStorage.getItem('token'),
+			'Content-Type': 'application/json'
+		}
+	})
+		.then(response => response.json())
+		.then(responseData => {
+			if (responseData.code === 200) {
+				ElMessage({
+					message: '保存成功',
+					type: 'success'
+				});
+			} else
+				ElMessage({
+					message: '保存失败',
+					type: 'error'
+				});
+		})
+		.catch(() => {
+			ElMessage({
+				message: '保存失败',
+				type: 'error'
+			})
+		});
+}
 </script>
 
 <style scoped>
 .md-content {
 	border-radius: 5px;
-	border: 1px solid #ebebeb;
-	background-color: #f4f4f4;
 	padding: 10px;
 	overflow-y: auto;
 	max-height: 100%;

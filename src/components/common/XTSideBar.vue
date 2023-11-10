@@ -1,5 +1,5 @@
 <script setup>
-import { ElMenu, ElMenuItem, ElSubMenu, ElIcon, ElMenuItemGroup } from 'element-plus';
+import { ElMenu, ElMenuItem, ElIcon } from 'element-plus';
 import { Document, HomeFilled, Avatar, Picture, Link } from '@element-plus/icons-vue';
 </script>
 
@@ -29,22 +29,14 @@ import { Document, HomeFilled, Avatar, Picture, Link } from '@element-plus/icons
                 <span>照片墙</span>
             </template>
         </ElMenuItem>
-        <ElSubMenu index="3">
+        <ElMenuItem index="/articles">
             <template #title>
                 <ElIcon>
                     <Document />
                 </ElIcon>
                 <span>文章列表</span>
             </template>
-            <ElMenuItemGroup title="JavaScript">
-                <ElMenuItem>文章 1</ElMenuItem>
-                <ElMenuItem>文章 2</ElMenuItem>
-            </ElMenuItemGroup>
-            <ElMenuItemGroup title="Vue.js">
-                <ElMenuItem>文章 1</ElMenuItem>
-                <ElMenuItem>文章 2</ElMenuItem>
-            </ElMenuItemGroup>
-        </ElSubMenu>
+        </ElMenuItem>
         <ElMenuItem index="/link">
             <template #title>
                 <ElIcon>
@@ -56,5 +48,4 @@ import { Document, HomeFilled, Avatar, Picture, Link } from '@element-plus/icons
     </ElMenu>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

@@ -17,6 +17,8 @@ import GalleryPage from './components/pages/GalleryPage.vue';
 import ArticlePage from './components/pages/ArticlePage.vue';
 import EditPage from './components/pages/EditPage.vue';
 import AdminPage from './components/pages/AdminPage.vue';
+import ArticleListPage from './components/pages/ArticleListPage.vue';
+import LoginPage from './components/pages/LoginPage.vue';
 
 import NotFound from './components/pages/NotFound.vue';
 
@@ -27,7 +29,9 @@ const routes = [
     { path: '/gallery', component: GalleryPage },
     { path: '/admin', component: AdminPage },
     { path: '/article/:id', component: ArticlePage },
-    { path: '/edit', component: EditPage },
+    { path: '/articles', component: ArticleListPage },
+    { path: '/edit/:id', component: EditPage },
+    { path: '/login', component: LoginPage },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound }
 ];
 

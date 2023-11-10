@@ -5,7 +5,7 @@ import XTNavBar from '../common/XTNavBar.vue';
 import XTSideBar from '../common/XTSideBar.vue';
 import XTFooter from '../common/XTFooter.vue';
 
-defineProps(['title', 'showHeader', 'showSidebar']);
+const props = defineProps(['title', 'showHeader', 'showSidebar', 'mainNoPadding']);
 </script>
 
 <template>
@@ -19,13 +19,13 @@ defineProps(['title', 'showHeader', 'showSidebar']);
 				<XTSideBar/>
 			</ElAside>
 
-			<ElMain>
+			<ElMain :style="{paddingTop: props.mainNoPadding ? '0' : 'auto', paddingBottom: props.mainNoPadding ? '0' : 'auto'}">
 				<ElPageHeader :icon="ArrowLeft" title="返回上一页" v-if="showHeader" style="margin-bottom: 15px;" @click="$router.back">
 					<template #content>
 						<span> {{ title }} </span>
 					</template>
 				</ElPageHeader>
-                <slot />
+                <slot></slot>
 			</ElMain>
 		</ElContainer>
 
