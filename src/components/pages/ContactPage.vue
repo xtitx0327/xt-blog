@@ -10,7 +10,7 @@ defineProps(['title']);
 	<BasePage title="联系我" :show-header="true" :show-sidebar="true">
 		<ElCarousel type="card">
 			<ElCarouselItem v-for="item in 6" :key="item">
-				<ElImage :src="'./public/' + item.toString() + '.jpg'"></ElImage>
+				<ElImage :src="'./' + item.toString() + '.jpg'"></ElImage>
 			</ElCarouselItem>
 		</ElCarousel>
 

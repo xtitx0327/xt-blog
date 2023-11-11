@@ -16,7 +16,7 @@
 <script setup>
 import { apiBase } from '../../config.js';
 import { ElButton, ElCheckbox, ElDivider, ElRow, ElSpace, ElText, ElMessage } from 'element-plus';
-import { computed, watch, ref } from 'vue';
+import { computed, watch, ref, onMounted } from 'vue';
 import { marked } from 'marked';
 import MathJax from './MathJax.js'
 import hljs from 'highlight.js';
@@ -40,9 +40,15 @@ const renderedContent = computed(() => {
 		return props.content;
 });
 
+onMounted(() => {
+	MathJax.doRender();
+});
+
 watch(renderedContent, () => {
 	if (autoRender.value)
-		MathJax.doRender();
+		setTimeout(() => {
+			MathJax.doRender();
+		}, 500);
 	return;
 });
 

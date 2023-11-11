@@ -4,8 +4,7 @@ from flask_cors import CORS
 from uuid import uuid1
 
 app = Flask(__name__)
-# app.config['SECRET_KEY'] = str(uuid1())
-app.config['SECRET_KEY'] = 'dev'
+app.config['SECRET_KEY'] = str(uuid1())
 
 # 设置 JWT 存储的位置为 cookies
 # app.config['JWT_TOKEN_LOCATION'] = ['cookies']
@@ -19,4 +18,4 @@ from routes.api import apiBp
 app.register_blueprint(apiBp)
 
 if __name__ == '__main__':
-    app.run(debug = True, host = '127.0.0.1', port = 8001)
+    app.run(debug = False, host = '127.0.0.1', port = 8001)
